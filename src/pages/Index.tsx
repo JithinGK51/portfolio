@@ -12,6 +12,7 @@ import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 
 const GithubShowcase = lazy(() => import("@/components/sections/GithubShowcase"));
+const Certificates = lazy(() => import("@/components/sections/Certificates"));
 
 const Index = () => {
   return (
@@ -20,12 +21,12 @@ const Index = () => {
       <ScrollProgress />
       
       {/* Navigation */}
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-40 glass glow-border rounded-full px-6 py-2.5 flex items-center gap-6">
-        {["About", "Skills", "Projects", "GitHub", "Contact"].map((item) => (
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-40 glass glow-border rounded-full px-4 md:px-6 py-2.5 flex items-center gap-3 md:gap-6">
+        {["About", "Skills", "Projects", "GitHub", "Certificates", "Contact"].map((item) => (
           <a
             key={item}
             href={`#${item.toLowerCase()}`}
-            className="text-xs text-muted-foreground hover:text-foreground transition-colors font-mono uppercase tracking-wider"
+            className="text-[10px] md:text-xs text-muted-foreground hover:text-foreground transition-colors font-mono uppercase tracking-wider"
           >
             {item}
           </a>
@@ -41,6 +42,9 @@ const Index = () => {
         <Projects />
         <Suspense fallback={<div className="section-padding text-center text-muted-foreground text-sm">Loading...</div>}>
           <GithubShowcase />
+        </Suspense>
+        <Suspense fallback={<div className="section-padding text-center text-muted-foreground text-sm">Loading...</div>}>
+          <Certificates />
         </Suspense>
         <Achievements />
         <Services />
