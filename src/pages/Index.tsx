@@ -21,7 +21,7 @@ const Index = () => {
       
       {/* Navigation */}
       <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-40 glass glow-border rounded-full px-6 py-2.5 flex items-center gap-6">
-        {["About", "Skills", "Projects", "Contact"].map((item) => (
+        {["About", "Skills", "Projects", "GitHub", "Contact"].map((item) => (
           <a
             key={item}
             href={`#${item.toLowerCase()}`}
