@@ -1,4 +1,10 @@
-import { Github, Twitter, Linkedin, Heart } from "lucide-react";
+import { Github, Instagram, Linkedin, Heart } from "lucide-react";
+
+const socialLinks = [
+  { icon: Github, href: "https://github.com/JithinGK51", label: "GitHub" },
+  { icon: Instagram, href: "https://www.instagram.com/jithin_gk_wb?igsh=MW5iYTdmdDluc2xkYQ==", label: "Instagram" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/jithin-gk-19671b2a7", label: "LinkedIn" },
+];
 
 const Footer = () => {
   return (
@@ -15,12 +21,14 @@ const Footer = () => {
         </div>
 
         <div className="flex gap-4">
-          {[Github, Twitter, Linkedin].map((Icon, i) => (
+          {socialLinks.map(({ icon: Icon, href, label }) => (
             <a
-              key={i}
-              href="#"
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-muted-foreground/40 hover:text-foreground transition-colors"
-              aria-label={`Social link ${i + 1}`}
+              aria-label={label}
             >
               <Icon size={18} />
             </a>

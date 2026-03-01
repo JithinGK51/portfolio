@@ -21,7 +21,7 @@ interface GithubUser {
   html_url: string;
 }
 
-const GITHUB_USERNAME = "jithingk";
+const GITHUB_USERNAME = "JithinGK51";
 
 const fetchGithubUser = async (): Promise<GithubUser> => {
   const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`);

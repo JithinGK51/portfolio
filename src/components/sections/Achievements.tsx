@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import AnimatedCounter from "@/components/animations/AnimatedCounter";
 
@@ -23,10 +24,14 @@ const Achievements = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, i) => (
-            <ScrollReveal key={stat.label} delay={i * 0.1}>
-              <div className="glass glow-border rounded-2xl p-8">
+            <ScrollReveal key={stat.label} delay={i * 0.12} scale>
+              <motion.div
+                className="glass glow-border rounded-2xl p-8 text-center"
+                whileHover={{ y: -8, scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <AnimatedCounter target={stat.target} label={stat.label} suffix={stat.suffix} />
-              </div>
+              </motion.div>
             </ScrollReveal>
           ))}
         </div>

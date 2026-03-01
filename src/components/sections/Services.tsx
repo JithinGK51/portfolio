@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import GlassCard from "@/components/animations/GlassCard";
 import { Code2, Palette, Globe } from "lucide-react";
@@ -35,11 +36,15 @@ const Services = () => {
 
         <div className="grid md:grid-cols-3 gap-8">
           {services.map((service, i) => (
-            <ScrollReveal key={service.title} delay={i * 0.15}>
+            <ScrollReveal key={service.title} delay={i * 0.15} scale>
               <GlassCard className="p-8 h-full text-center">
-                <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-accent/50 mb-6">
-                  <service.icon size={24} className="text-foreground/70" />
-                </div>
+                <motion.div
+                  className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-accent/50 mb-6"
+                  whileHover={{ rotate: 12, scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <service.icon size={26} className="text-foreground/70" />
+                </motion.div>
                 <h3 className="text-lg font-semibold mb-3 text-foreground">{service.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{service.description}</p>
               </GlassCard>

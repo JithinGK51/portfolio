@@ -8,8 +8,11 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Enable dark mode by default
-if (!document.documentElement.classList.contains('dark')) {
+// Enable dark mode by default on first visit
+if (!localStorage.getItem('theme')) {
+  document.documentElement.classList.add('dark');
+  localStorage.setItem('theme', 'dark');
+} else if (localStorage.getItem('theme') === 'dark') {
   document.documentElement.classList.add('dark');
 }
 

@@ -2,13 +2,19 @@ import { motion } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import TypeWriter from "@/components/animations/TypeWriter";
 import Scene3D from "@/components/Scene3D";
-import { ArrowDown, ExternalLink, Mail } from "lucide-react";
+import { ArrowDown, ExternalLink, Mail, Github, Linkedin, Instagram } from "lucide-react";
 
 const techStack = [
   "React", "TypeScript", "Node.js", "Next.js", "Tailwind CSS", "MongoDB",
   "PostgreSQL", "Python", "Docker", "AWS", "Git", "Figma",
   "React", "TypeScript", "Node.js", "Next.js", "Tailwind CSS", "MongoDB",
   "PostgreSQL", "Python", "Docker", "AWS", "Git", "Figma",
+];
+
+const socialLinks = [
+  { icon: Github, href: "https://github.com/JithinGK51", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/jithin-gk-19671b2a7", label: "LinkedIn" },
+  { icon: Instagram, href: "https://www.instagram.com/jithin_gk_wb?igsh=MW5iYTdmdDluc2xkYQ==", label: "Instagram" },
 ];
 
 const Hero = () => {
@@ -20,13 +26,35 @@ const Hero = () => {
           <div className="flex flex-col items-center lg:items-start gap-6">
             <motion.div
               className="relative w-36 h-36 rounded-full overflow-hidden glow-border"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.05, rotate: 2 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-foreground/5 rounded-full" />
               <div className="w-full h-full rounded-full bg-card flex items-center justify-center text-4xl font-bold text-foreground/50">
                 JG
               </div>
             </motion.div>
+
+            {/* Social links */}
+            <div className="flex gap-3">
+              {socialLinks.map(({ icon: Icon, href, label }, i) => (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="glass glow-border w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label={label}
+                  whileHover={{ scale: 1.15, y: -3 }}
+                  whileTap={{ scale: 0.95 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 + i * 0.1 }}
+                >
+                  <Icon size={16} />
+                </motion.a>
+              ))}
+            </div>
           </div>
         </ScrollReveal>
 
@@ -63,16 +91,16 @@ const Hero = () => {
               <motion.a
                 href="#projects"
                 className="glass-hover px-6 py-3 rounded-xl flex items-center gap-2 text-sm font-medium text-foreground"
-                whileHover={{ scale: 1.03 }}
+                whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <ExternalLink size={16} />
                 View Projects
               </motion.a>
               <motion.a
-                href="#contact"
+                href="mailto:jithingk831733@gmail.com"
                 className="px-6 py-3 rounded-xl border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-colors flex items-center gap-2"
-                whileHover={{ scale: 1.03 }}
+                whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <Mail size={16} />
