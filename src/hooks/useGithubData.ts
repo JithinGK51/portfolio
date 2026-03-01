@@ -19,6 +19,13 @@ interface GithubUser {
   followers: number;
   following: number;
   html_url: string;
+  name: string | null;
+}
+
+export interface CertificateFile {
+  name: string;
+  download_url: string;
+  html_url: string;
 }
 
 const GITHUB_USERNAME = "JithinGK51";
@@ -37,6 +44,19 @@ const fetchGithubRepos = async (): Promise<GithubRepo[]> => {
   return res.json();
 };
 
+const fetchCertificates = async (): Promise<CertificateFile[]> => {
+  const res = await fetch(
+    `https://api.github.com/repos/${GITHUB_USERNAME}/certificates/contents`
+  );
+  if (!res.ok) throw new Error("Failed to fetch certificates");
+  const files = await res.json();
+  return files.filter(
+    (f: any) =>
+      f.type === "file" &&
+      (f.name.endsWith(".png") || f.name.endsWith(".jpg") || f.name.endsWith(".jpeg"))
+  );
+};
+
 export const useGithubData = () => {
   const userQuery = useQuery({
     queryKey: ["github-user"],
@@ -52,6 +72,13 @@ export const useGithubData = () => {
     retry: 1,
   });
 
+  const certificatesQuery = useQuery({
+    queryKey: ["github-certificates"],
+    queryFn: fetchCertificates,
+    staleTime: 1000 * 60 * 30,
+    retry: 1,
+  });
+
   const topLanguages = reposQuery.data
     ? Object.entries(
         reposQuery.data.reduce((acc, repo) => {
@@ -63,5 +90,5 @@ export const useGithubData = () => {
         .slice(0, 6)
     : [];
 
-  return { user: userQuery, repos: reposQuery, topLanguages };
+  return { user: userQuery, repos: reposQuery, certificates: certificatesQuery, topLanguages };
 };

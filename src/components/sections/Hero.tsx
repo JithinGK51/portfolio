@@ -2,7 +2,8 @@ import { motion } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import TypeWriter from "@/components/animations/TypeWriter";
 import Scene3D from "@/components/Scene3D";
-import { ArrowDown, ExternalLink, Mail, Github, Linkedin, Instagram } from "lucide-react";
+import { ArrowDown, ExternalLink, Mail, Github, Linkedin, Instagram, Building2, Users } from "lucide-react";
+import { useGithubData } from "@/hooks/useGithubData";
 
 const techStack = [
   "React", "TypeScript", "Node.js", "Next.js", "Tailwind CSS", "MongoDB",
@@ -17,7 +18,14 @@ const socialLinks = [
   { icon: Instagram, href: "https://www.instagram.com/jithin_gk_wb?igsh=MW5iYTdmdDluc2xkYQ==", label: "Instagram" },
 ];
 
+const roles = [
+  { icon: Building2, label: "Co-Founder", org: "Crafzio" },
+  { icon: Users, label: "Member", org: "Roarstar Technology" },
+];
+
 const Hero = () => {
+  const { user } = useGithubData();
+
   return (
     <section id="hero" className="relative min-h-screen flex flex-col justify-center section-padding overflow-hidden">
       <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
@@ -29,11 +37,46 @@ const Hero = () => {
               whileHover={{ scale: 1.05, rotate: 2 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-foreground/5 rounded-full" />
-              <div className="w-full h-full rounded-full bg-card flex items-center justify-center text-4xl font-bold text-foreground/50">
-                JG
-              </div>
+              {user.data?.avatar_url ? (
+                <img
+                  src={user.data.avatar_url}
+                  alt="Jithin GK"
+                  className="w-full h-full object-cover rounded-full"
+                />
+              ) : (
+                <>
+                  <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-foreground/5 rounded-full" />
+                  <div className="w-full h-full rounded-full bg-card flex items-center justify-center text-4xl font-bold text-foreground/50">
+                    JG
+                  </div>
+                </>
+              )}
+              {/* Glow ring */}
+              <motion.div
+                className="absolute inset-0 rounded-full border-2 border-foreground/10"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                style={{ borderStyle: "dashed" }}
+              />
             </motion.div>
+
+            {/* Roles badges */}
+            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+              {roles.map(({ icon: Icon, label, org }, i) => (
+                <motion.div
+                  key={org}
+                  className="glass glow-border px-4 py-2 rounded-full flex items-center gap-2"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.8 + i * 0.15 }}
+                >
+                  <Icon size={14} className="text-muted-foreground" />
+                  <span className="text-xs font-mono text-muted-foreground">
+                    {label} @ <span className="text-foreground font-semibold">{org}</span>
+                  </span>
+                </motion.div>
+              ))}
+            </div>
 
             {/* Social links */}
             <div className="flex gap-3">
@@ -82,7 +125,7 @@ const Hero = () => {
 
           <ScrollReveal delay={0.4}>
             <p className="text-muted-foreground max-w-md mb-8 mx-auto lg:mx-0">
-              Crafting digital experiences with clean code, modern design, and a passion for innovation.
+              {user.data?.bio || "Crafting digital experiences with clean code, modern design, and a passion for innovation."}
             </p>
           </ScrollReveal>
 
