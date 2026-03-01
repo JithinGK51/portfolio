@@ -6,26 +6,32 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 8%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 0 0% 8%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 0 0% 9%;
+    --popover-foreground: 0 0% 8%;
+    --primary: 0 0% 8%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --secondary: 0 0% 94%;
+    --secondary-foreground: 0 0% 12%;
+    --muted: 0 0% 94%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 0 0% 92%;
+    --accent-foreground: 0 0% 12%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 0 0% 12%;
     --radius: 0.75rem;
+
+    --glow-primary: 0 0% 0%;
+    --glow-accent: 220 10% 40%;
+    --glass-bg: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 0% / 0.06;
+    --glass-shine: 0 0% 0% / 0.02;
   }
 
   .dark {
@@ -71,20 +77,25 @@
 
 @layer components {
   .glass {
-    @apply bg-card/60 backdrop-blur-xl border border-white/[0.08] rounded-2xl;
+    @apply bg-card/60 backdrop-blur-xl border rounded-2xl;
+    border-color: hsl(var(--glass-border));
   }
   .glass-hover {
-    @apply glass transition-all duration-500 hover:border-white/[0.15] hover:shadow-[0_0_30px_rgba(255,255,255,0.05)];
+    @apply glass transition-all duration-500;
+  }
+  .glass-hover:hover {
+    border-color: hsl(var(--foreground) / 0.12);
+    box-shadow: 0 0 30px hsl(var(--foreground) / 0.05);
   }
   .glow-border {
     @apply relative overflow-hidden;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.03), inset 0 0 20px rgba(255, 255, 255, 0.01);
+    box-shadow: 0 0 20px hsl(var(--foreground) / 0.03), inset 0 0 20px hsl(var(--foreground) / 0.01);
   }
   .glow-border::before {
     content: '';
     @apply absolute inset-0 rounded-[inherit];
     padding: 1px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.02), rgba(255,255,255,0.1));
+    background: linear-gradient(135deg, hsl(var(--foreground) / 0.12), hsl(var(--foreground) / 0.02), hsl(var(--foreground) / 0.08));
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;

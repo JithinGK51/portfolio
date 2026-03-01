@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import Scene3D from "@/components/Scene3D";
 
@@ -26,15 +27,23 @@ const About = () => {
 
           <div className="space-y-4">
             {paragraphs.map((text, i) => (
-              <ScrollReveal key={i} delay={0.1 * (i + 1)}>
-                <p className="text-muted-foreground leading-relaxed">{text}</p>
+              <ScrollReveal key={i} delay={0.15 * (i + 1)}>
+                <motion.p
+                  className="text-muted-foreground leading-relaxed"
+                  whileInView={{ opacity: [0.3, 1] }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.1 * i }}
+                >
+                  {text}
+                </motion.p>
               </ScrollReveal>
             ))}
           </div>
         </div>
 
-        <ScrollReveal direction="right" className="hidden lg:block">
-          <div className="h-[400px]">
+        <ScrollReveal direction="right" className="hidden lg:block" scale>
+          <div className="h-[400px] relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-foreground/5 to-transparent rounded-3xl" />
             <Scene3D className="w-full h-full" />
           </div>
         </ScrollReveal>

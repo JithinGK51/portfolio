@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ScrollProgress from "@/components/ScrollProgress";
+import ThemeToggle from "@/components/ThemeToggle";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
@@ -19,7 +20,7 @@ const Index = () => {
       <ScrollProgress />
       
       {/* Navigation */}
-      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-40 glass glow-border rounded-full px-6 py-2.5 flex gap-6">
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-40 glass glow-border rounded-full px-6 py-2.5 flex items-center gap-6">
         {["About", "Skills", "Projects", "Contact"].map((item) => (
           <a
             key={item}
@@ -29,6 +30,7 @@ const Index = () => {
             {item}
           </a>
         ))}
+        <ThemeToggle />
       </nav>
 
       <Hero />
