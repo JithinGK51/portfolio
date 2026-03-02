@@ -2,14 +2,14 @@ import { motion } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import TypeWriter from "@/components/animations/TypeWriter";
 import Scene3D from "@/components/Scene3D";
-import { ArrowDown, ExternalLink, Mail, Github, Linkedin, Instagram, Building2, Users } from "lucide-react";
+import { ArrowDown, ExternalLink, Mail, Github, Linkedin, Instagram, Building2, Users, Download } from "lucide-react";
 import { useGithubData } from "@/hooks/useGithubData";
 
 const techStack = [
-  "HTML5", "CSS3", "JavaScript", "PHP", "Python", "Node.js",
-  "Android", "Java", "Kotlin", "Flutter", "MySQL", "MongoDB",
-  "HTML5", "CSS3", "JavaScript", "PHP", "Python", "Node.js",
-  "Android", "Java", "Kotlin", "Flutter", "MySQL", "MongoDB",
+  "React", "TypeScript", "Next.js", "Node.js", "Tailwind CSS", "Python",
+  "Flutter", "Android", "MongoDB", "PostgreSQL", "Docker", "AWS",
+  "React", "TypeScript", "Next.js", "Node.js", "Tailwind CSS", "Python",
+  "Flutter", "Android", "MongoDB", "PostgreSQL", "Docker", "AWS",
 ];
 
 const socialLinks = [
@@ -147,6 +147,16 @@ const Hero = () => {
               >
                 <Mail size={14} />
                 Contact Me
+              </motion.a>
+              <motion.a
+                href="/resume.pdf"
+                download
+                className="px-4 md:px-6 py-2.5 md:py-3 rounded-xl border border-border text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-colors flex items-center gap-2"
+                whileHover={{ scale: 1.03, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Download size={14} />
+                Resume
               </motion.a>
             </div>
           </ScrollReveal>
