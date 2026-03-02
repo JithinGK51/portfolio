@@ -6,10 +6,10 @@ import { ArrowDown, ExternalLink, Mail, Github, Linkedin, Instagram, Building2, 
 import { useGithubData } from "@/hooks/useGithubData";
 
 const techStack = [
-  "React", "TypeScript", "Node.js", "Next.js", "Tailwind CSS", "MongoDB",
-  "PostgreSQL", "Python", "Docker", "AWS", "Git", "Figma",
-  "React", "TypeScript", "Node.js", "Next.js", "Tailwind CSS", "MongoDB",
-  "PostgreSQL", "Python", "Docker", "AWS", "Git", "Figma",
+  "HTML5", "CSS3", "JavaScript", "PHP", "Python", "Node.js",
+  "Android", "Java", "Kotlin", "Flutter", "MySQL", "MongoDB",
+  "HTML5", "CSS3", "JavaScript", "PHP", "Python", "Node.js",
+  "Android", "Java", "Kotlin", "Flutter", "MySQL", "MongoDB",
 ];
 
 const socialLinks = [
@@ -28,12 +28,12 @@ const Hero = () => {
 
   return (
     <section id="hero" className="relative min-h-screen flex flex-col justify-center section-padding overflow-hidden">
-      <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* Left - Profile */}
         <ScrollReveal className="order-2 lg:order-1">
-          <div className="flex flex-col items-center lg:items-start gap-6">
+          <div className="flex flex-col items-center lg:items-start gap-4 md:gap-6">
             <motion.div
-              className="relative w-36 h-36 rounded-full overflow-hidden glow-border"
+              className="relative w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden glow-border"
               whileHover={{ scale: 1.05, rotate: 2 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
@@ -46,12 +46,11 @@ const Hero = () => {
               ) : (
                 <>
                   <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-foreground/5 rounded-full" />
-                  <div className="w-full h-full rounded-full bg-card flex items-center justify-center text-4xl font-bold text-foreground/50">
+                  <div className="w-full h-full rounded-full bg-card flex items-center justify-center text-3xl md:text-4xl font-bold text-foreground/50">
                     JG
                   </div>
                 </>
               )}
-              {/* Glow ring */}
               <motion.div
                 className="absolute inset-0 rounded-full border-2 border-foreground/10"
                 animate={{ rotate: 360 }}
@@ -65,13 +64,13 @@ const Hero = () => {
               {roles.map(({ icon: Icon, label, org }, i) => (
                 <motion.div
                   key={org}
-                  className="glass glow-border px-4 py-2 rounded-full flex items-center gap-2"
+                  className="glass glow-border px-3 md:px-4 py-1.5 md:py-2 rounded-full flex items-center gap-2"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.8 + i * 0.15 }}
                 >
-                  <Icon size={14} className="text-muted-foreground" />
-                  <span className="text-xs font-mono text-muted-foreground">
+                  <Icon size={12} className="text-muted-foreground" />
+                  <span className="text-[10px] md:text-xs font-mono text-muted-foreground">
                     {label} @ <span className="text-foreground font-semibold">{org}</span>
                   </span>
                 </motion.div>
@@ -86,7 +85,7 @@ const Hero = () => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass glow-border w-10 h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+                  className="glass glow-border w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
                   aria-label={label}
                   whileHover={{ scale: 1.15, y: -3 }}
                   whileTap={{ scale: 0.95 }}
@@ -94,7 +93,7 @@ const Hero = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + i * 0.1 }}
                 >
-                  <Icon size={16} />
+                  <Icon size={15} />
                 </motion.a>
               ))}
             </div>
@@ -104,13 +103,13 @@ const Hero = () => {
         {/* Right - Content */}
         <div className="order-1 lg:order-2 text-center lg:text-left">
           <ScrollReveal delay={0.1}>
-            <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground mb-4 font-mono">
+            <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-muted-foreground mb-3 md:mb-4 font-mono">
               Developer Portfolio
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.9] mb-6">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.9] mb-4 md:mb-6">
               <span className="text-gradient">Jithin</span>
               <br />
               <span className="text-foreground/60">GK</span>
@@ -118,35 +117,35 @@ const Hero = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={0.3}>
-            <div className="text-lg md:text-xl mb-6 h-8">
+            <div className="text-base md:text-lg lg:text-xl mb-4 md:mb-6 h-7 md:h-8">
               <TypeWriter />
             </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.4}>
-            <p className="text-muted-foreground max-w-md mb-8 mx-auto lg:mx-0">
-              {user.data?.bio || "Crafting digital experiences with clean code, modern design, and a passion for innovation."}
+            <p className="text-sm md:text-base text-muted-foreground max-w-md mb-6 md:mb-8 mx-auto lg:mx-0">
+              {user.data?.bio || "💻 Full Stack Developer | 🌐 Web & 📱 Mobile Apps | HTML, CSS, JS, PHP, Python, Android"}
             </p>
           </ScrollReveal>
 
           <ScrollReveal delay={0.5}>
-            <div className="flex gap-4 justify-center lg:justify-start">
+            <div className="flex gap-3 md:gap-4 justify-center lg:justify-start flex-wrap">
               <motion.a
                 href="#projects"
-                className="glass-hover px-6 py-3 rounded-xl flex items-center gap-2 text-sm font-medium text-foreground"
+                className="glass-hover px-4 md:px-6 py-2.5 md:py-3 rounded-xl flex items-center gap-2 text-xs md:text-sm font-medium text-foreground"
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <ExternalLink size={16} />
+                <ExternalLink size={14} />
                 View Projects
               </motion.a>
               <motion.a
                 href="mailto:jithingk831733@gmail.com"
-                className="px-6 py-3 rounded-xl border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-colors flex items-center gap-2"
+                className="px-4 md:px-6 py-2.5 md:py-3 rounded-xl border border-border text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-colors flex items-center gap-2"
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <Mail size={16} />
+                <Mail size={14} />
                 Contact Me
               </motion.a>
             </div>
@@ -160,11 +159,11 @@ const Hero = () => {
       </div>
 
       {/* Marquee Tech Stack */}
-      <ScrollReveal delay={0.6} className="mt-16 md:mt-24">
-        <div className="overflow-hidden border-y border-border/50 py-4">
+      <ScrollReveal delay={0.6} className="mt-12 md:mt-16 lg:mt-24">
+        <div className="overflow-hidden border-y border-border/50 py-3 md:py-4">
           <div className="marquee">
             {techStack.map((tech, i) => (
-              <span key={i} className="text-sm text-muted-foreground/50 whitespace-nowrap font-mono uppercase tracking-widest">
+              <span key={i} className="text-[10px] md:text-sm text-muted-foreground/50 whitespace-nowrap font-mono uppercase tracking-widest">
                 {tech}
               </span>
             ))}
@@ -174,11 +173,11 @@ const Hero = () => {
 
       {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
       >
-        <ArrowDown size={20} className="text-muted-foreground/40" />
+        <ArrowDown size={18} className="text-muted-foreground/40" />
       </motion.div>
     </section>
   );

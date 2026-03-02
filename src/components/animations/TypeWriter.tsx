@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 
-const roles = ["Full Stack Developer", "UI/UX Designer", "Web App Developer", "Problem Solver"];
+const roles = [
+  "Full Stack Developer",
+  "Web & Mobile App Developer",
+  "Android Developer",
+  "Co-Founder @ Crafzio",
+  "Member @ Roarstar Technology",
+];
 
 const TypeWriter = () => {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -32,7 +38,7 @@ const TypeWriter = () => {
   }, [charIndex, isDeleting, roleIndex]);
 
   return (
-    <span className="font-mono text-muted-foreground">
+    <span className="font-mono text-muted-foreground text-sm md:text-base">
       {roles[roleIndex].substring(0, charIndex)}
       <span className="animate-pulse">|</span>
     </span>
