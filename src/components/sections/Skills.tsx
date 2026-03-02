@@ -6,40 +6,40 @@ const categories = [
   {
     title: "Frontend",
     icon: Code2,
-    skills: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "jQuery"],
+    skills: ["React", "Next.js", "TypeScript", "HTML5", "CSS3", "JavaScript", "Tailwind CSS", "Bootstrap", "jQuery"],
   },
   {
     title: "Backend",
     icon: Server,
-    skills: ["Node.js", "Python", "PHP", "Express.js", "REST APIs"],
+    skills: ["Node.js", "Express.js", "Python", "PHP", "REST APIs", "GraphQL"],
   },
   {
     title: "Database",
     icon: Database,
-    skills: ["MySQL", "SQLite", "MongoDB"],
+    skills: ["MongoDB", "MySQL", "PostgreSQL", "SQLite", "Supabase"],
   },
   {
     title: "Mobile",
     icon: Smartphone,
-    skills: ["Android", "Java", "Kotlin", "Flutter"],
+    skills: ["Android", "Java", "Kotlin", "Flutter", "React Native"],
   },
   {
     title: "Tools",
     icon: Wrench,
-    skills: ["Git", "GitHub", "VS Code", "XAMPP", "Linux"],
+    skills: ["Git", "GitHub", "Docker", "VS Code", "Figma", "AWS", "Linux"],
   },
   {
     title: "Other",
     icon: Rocket,
-    skills: ["JSON", "AJAX", "REST API", "Responsive Design"],
+    skills: ["JSON", "AJAX", "REST API", "Framer Motion", "Responsive Design"],
   },
 ];
 
 const stackItems = [
-  "HTML5", "CSS3", "JavaScript", "PHP", "Python", "Node.js",
-  "Android", "Java", "Kotlin", "Flutter", "MySQL", "MongoDB",
-  "HTML5", "CSS3", "JavaScript", "PHP", "Python", "Node.js",
-  "Android", "Java", "Kotlin", "Flutter", "MySQL", "MongoDB",
+  "React", "TypeScript", "Next.js", "Tailwind CSS", "Node.js", "Python",
+  "PHP", "Flutter", "Android", "Java", "MongoDB", "PostgreSQL",
+  "React", "TypeScript", "Next.js", "Tailwind CSS", "Node.js", "Python",
+  "PHP", "Flutter", "Android", "Java", "MongoDB", "PostgreSQL",
 ];
 
 const Skills = () => {
