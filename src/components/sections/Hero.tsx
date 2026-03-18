@@ -133,7 +133,7 @@ const Hero = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    console.log("Resume button clicked, current state:", showResumeOptions);
+                    console.log("Resume button clicked, current state: v1.0.6", showResumeOptions);
                     setShowResumeOptions(!showResumeOptions);
                   }}
                   className="px-4 md:px-6 py-2.5 md:py-3 rounded-xl border border-border text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all flex items-center gap-2 bg-transparent cursor-pointer relative z-[60] pointer-events-auto"
