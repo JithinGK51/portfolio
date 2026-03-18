@@ -28,15 +28,20 @@ const Experience = () => {
   return (
     <section id="experience" className="section-padding relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 relative">
+        {/* Background Glows */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none -z-10">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-accent/20 blur-[120px] rounded-full" />
+        </div>
+
         <ScrollReveal>
           <div className="text-center mb-16 md:mb-20">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient inline-block">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient inline-block drop-shadow-[0_0_15px_rgba(var(--accent-rgb),0.3)]">
               Experience
             </h2>
-            <p className="text-muted-foreground text-sm md:text-base max-w-lg mx-auto uppercase tracking-widest font-mono">
+            <p className="text-muted-foreground text-sm md:text-base max-w-lg mx-auto uppercase tracking-widest font-mono glow-text">
               Professional and internship experience
             </p>
-            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mt-6 rounded-full opacity-50" />
+            <div className="w-24 h-1 bg-gradient-to-r from-transparent via-accent to-transparent mx-auto mt-6 rounded-full opacity-50 shadow-[0_0_10px_rgba(var(--accent-rgb),0.5)]" />
           </div>
         </ScrollReveal>
 
