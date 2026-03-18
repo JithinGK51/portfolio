@@ -2,49 +2,45 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import GlassCard from "@/components/animations/GlassCard";
-import { ExternalLink, Github, X } from "lucide-react";
+import { Github, X, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Project {
   title: string;
   description: string;
   image: string;
   tech: string[];
-  liveUrl?: string;
   githubUrl?: string;
 }
 
 const projects: Project[] = [
   {
-    title: "E-Commerce Platform",
-    description: "A full-stack e-commerce application with real-time inventory management, payment processing, and admin dashboard.",
-    image: "",
-    tech: ["React", "Node.js", "MongoDB", "Stripe"],
-    liveUrl: "#",
-    githubUrl: "#",
+    title: "LearnJavaX 📚",
+    description: "A comprehensive Java learning application featuring 6 levels of structured content from fundamentals to advanced APIs, available on Google Play.",
+    image: "https://raw.githubusercontent.com/JithinGK51/learnjavax/master/assets/screenshorts/WhatsApp%20Image%202025-10-03%20at%2019.36.33_a25b4901.jpg",
+    tech: ["Flutter", "Dart"],
+    githubUrl: "https://github.com/JithinGK51/learnjavax",
   },
   {
-    title: "AI Chat Application",
-    description: "Real-time AI-powered chat application with natural language processing and sentiment analysis.",
-    image: "",
-    tech: ["Next.js", "Python", "OpenAI", "WebSocket"],
-    liveUrl: "#",
-    githubUrl: "#",
+    title: "GitHub Explorer Pro 🚀",
+    description: "A professional repository exploration tool that allows users to search, view, and analyze GitHub repositories with a sleek, modern interface.",
+    image: "https://raw.githubusercontent.com/JithinGK51/github/main/screenshort/image.png",
+    tech: ["React", "Vite", "Tailwind CSS", "Github API"],
+    githubUrl: "https://github.com/JithinGK51/github",
   },
   {
-    title: "Task Management System",
-    description: "Collaborative project management tool with drag-and-drop, real-time updates, and team workflows.",
-    image: "",
-    tech: ["React", "TypeScript", "PostgreSQL", "GraphQL"],
-    liveUrl: "#",
-    githubUrl: "#",
+    title: "QuickID 📱",
+    description: "An innovative student ID management system featuring advanced photo capture, intelligent storage, and professional export tools for educational institutions.",
+    image: "https://raw.githubusercontent.com/JithinGK51/QuickID/main/assets/icons/logo.jpg",
+    tech: ["Flutter", "Dart"],
+    githubUrl: "https://github.com/JithinGK51/QuickID",
   },
   {
-    title: "Portfolio Generator",
-    description: "Dynamic portfolio builder with customizable templates and automatic deployment.",
-    image: "",
-    tech: ["Next.js", "Tailwind", "Vercel", "MDX"],
-    liveUrl: "#",
-    githubUrl: "#",
+    title: "PCMS 🏙️",
+    description: "A Public Complaint Management System providing a citizen portal for reporting issues with role-based administrative control and master data management.",
+    image: "https://raw.githubusercontent.com/JithinGK51/CMS/main/uidesion/1.png",
+    tech: ["HTML", "CSS", "JS", "Python", "Flask", "Supabase"],
+    githubUrl: "https://github.com/JithinGK51/CMS",
   },
 ];
 
@@ -72,9 +68,21 @@ const Projects = () => {
                 <div onClick={() => setSelected(project)}>
                   {/* Preview area */}
                   <div className="h-48 bg-accent/30 flex items-center justify-center relative overflow-hidden">
-                    <div className="text-5xl font-bold text-foreground/5 group-hover:text-foreground/10 transition-colors duration-500">
-                      {String(i + 1).padStart(2, "0")}
-                    </div>
+                    {project.image ? (
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                        }}
+                      />
+                    ) : (
+                      <div className="text-5xl font-bold text-foreground/5 group-hover:text-foreground/10 transition-colors duration-500">
+                        {String(i + 1).padStart(2, "0")}
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
                   </div>
 
@@ -95,11 +103,21 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Marquee strip */}
+        <div className="mt-12 flex justify-center">
+          <Link
+            to="/gallery"
+            className="group glass glow-border px-8 py-3 rounded-full flex items-center gap-2 text-sm font-mono uppercase tracking-widest hover:bg-accent/20 transition-all"
+          >
+            Project Gallery
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+
+        {/* Scrolling strip */}
         <div className="mt-16 overflow-hidden border-y border-border/30 py-4">
-          <div className="flex gap-12 animate-marquee">
+          <div className="flex gap-12 animate-marquee whitespace-nowrap">
             {[...projects, ...projects].map((p, i) => (
-              <span key={i} className="text-sm text-muted-foreground/30 whitespace-nowrap font-mono uppercase tracking-widest">
+              <span key={i} className="text-sm text-muted-foreground/30 font-mono uppercase tracking-widest">
                 {p.title}
               </span>
             ))}
@@ -131,6 +149,11 @@ const Projects = () => {
               >
                 <X size={20} />
               </button>
+              {selected.image && (
+                <div className="h-48 w-full mb-6 rounded-xl overflow-hidden glow-border">
+                  <img src={selected.image} alt={selected.title} className="w-full h-full object-cover" />
+                </div>
+              )}
               <h3 className="text-2xl font-bold mb-4 text-foreground">{selected.title}</h3>
               <p className="text-muted-foreground mb-6">{selected.description}</p>
               <div className="flex flex-wrap gap-2 mb-6">
@@ -141,12 +164,6 @@ const Projects = () => {
                 ))}
               </div>
               <div className="flex gap-4">
-                {selected.liveUrl && (
-                  <a href={selected.liveUrl} target="_blank" rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-foreground hover:text-foreground/70 transition-colors">
-                    <ExternalLink size={16} /> Live Demo
-                  </a>
-                )}
                 {selected.githubUrl && (
                   <a href={selected.githubUrl} target="_blank" rel="noopener noreferrer"
                     className="flex items-center gap-2 text-sm text-foreground hover:text-foreground/70 transition-colors">

@@ -1,13 +1,13 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import TypeWriter from "@/components/animations/TypeWriter";
 import Scene3D from "@/components/Scene3D";
-import { ArrowDown, ExternalLink, Mail, Github, Linkedin, Instagram, Building2, Users, Download } from "lucide-react";
+import { ArrowDown, ExternalLink, Mail, Github, Linkedin, Instagram, Building2, Users, Download, X } from "lucide-react";
 import { useGithubData } from "@/hooks/useGithubData";
+import resumeFile from "@/assets/JITHIN_GK_resume (2).pdf";
+import { useState } from "react";
 
 const techStack = [
-  "React", "TypeScript", "Next.js", "Node.js", "Tailwind CSS", "Python",
-  "Flutter", "Android", "MongoDB", "PostgreSQL", "Docker", "AWS",
   "React", "TypeScript", "Next.js", "Node.js", "Tailwind CSS", "Python",
   "Flutter", "Android", "MongoDB", "PostgreSQL", "Docker", "AWS",
 ];
@@ -15,7 +15,7 @@ const techStack = [
 const socialLinks = [
   { icon: Github, href: "https://github.com/JithinGK51", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/jithin-gk-19671b2a7", label: "LinkedIn" },
-  { icon: Instagram, href: "https://www.instagram.com/jithin_gk_wb?igsh=MW5iYTdmdDluc2xkYQ==", label: "Instagram" },
+  { icon: Instagram, href: "https://www.instagram.com/jithin_gk_wb?igsh=MW5iYTdmdDluc2xkQ==", label: "Instagram" },
 ];
 
 const roles = [
@@ -25,6 +25,8 @@ const roles = [
 
 const Hero = () => {
   const { user } = useGithubData();
+  const [showResumeOptions, setShowResumeOptions] = useState(false);
+  const [showResumeModal, setShowResumeModal] = useState(false);
 
   return (
     <section id="hero" className="relative min-h-screen flex flex-col justify-center section-padding overflow-hidden">
@@ -129,7 +131,7 @@ const Hero = () => {
           </ScrollReveal>
 
           <ScrollReveal delay={0.5}>
-            <div className="flex gap-3 md:gap-4 justify-center lg:justify-start flex-wrap">
+            <div className="flex gap-3 md:gap-4 justify-center lg:justify-start flex-wrap relative">
               <motion.a
                 href="#projects"
                 className="glass-hover px-4 md:px-6 py-2.5 md:py-3 rounded-xl flex items-center gap-2 text-xs md:text-sm font-medium text-foreground"
@@ -148,16 +150,83 @@ const Hero = () => {
                 <Mail size={14} />
                 Contact Me
               </motion.a>
-              <motion.a
-                href="/resume.pdf"
-                download
-                className="px-4 md:px-6 py-2.5 md:py-3 rounded-xl border border-border text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-colors flex items-center gap-2"
-                whileHover={{ scale: 1.03, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Download size={14} />
-                Resume
-              </motion.a>
+              
+              <div className="relative">
+                <motion.button
+                  type="button"
+                  onClick={() => setShowResumeOptions(!showResumeOptions)}
+                  className="px-4 md:px-6 py-2.5 md:py-3 rounded-xl border border-border text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-colors flex items-center gap-2 bg-transparent"
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Download size={14} />
+                  Resume
+                </motion.button>
+
+                <AnimatePresence>
+                  {showResumeOptions && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      className="absolute bottom-full left-0 mb-3 w-52 glass glow-border rounded-xl overflow-hidden z-50 shadow-2xl"
+                    >
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setShowResumeModal(true);
+                          setShowResumeOptions(false);
+                        }}
+                        className="w-full px-4 py-3 text-left text-xs md:text-sm hover:bg-white/10 transition-colors flex items-center gap-2 text-foreground"
+                      >
+                        <ExternalLink size={14} className="text-accent" /> Open on Site
+                      </button>
+                      <a
+                        href={resumeFile}
+                        download="Jithin_GK_Resume.pdf"
+                        onClick={() => setShowResumeOptions(false)}
+                        className="w-full px-4 py-3 text-left text-xs md:text-sm hover:bg-white/10 transition-colors border-t border-border/30 flex items-center gap-2 text-foreground"
+                      >
+                        <Download size={14} className="text-accent" /> Download PDF
+                      </a>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Resume Modal */}
+              <AnimatePresence>
+                {showResumeModal && (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-background/80 backdrop-blur-sm"
+                  >
+                    <motion.div
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.9, opacity: 0 }}
+                      className="w-full max-w-5xl h-[85vh] glass glow-border rounded-2xl overflow-hidden flex flex-col relative"
+                    >
+                      <div className="flex justify-between items-center p-4 border-b border-border/30 bg-card/50 ">
+                        <h3 className="text-sm md:text-base font-mono uppercase tracking-widest">Resume Viewer</h3>
+                        <button
+                          onClick={() => setShowResumeModal(false)}
+                          className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                        >
+                          <X size={20} />
+                        </button>
+                      </div>
+                      <iframe
+                        src={`${resumeFile}#toolbar=0`}
+                        className="w-full h-full border-none"
+                        title="Resume"
+                      />
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </ScrollReveal>
         </div>
@@ -168,12 +237,12 @@ const Hero = () => {
         <Scene3D className="w-full h-full" />
       </div>
 
-      {/* Marquee Tech Stack */}
+      {/* Tech Stack Strip */}
       <ScrollReveal delay={0.6} className="mt-12 md:mt-16 lg:mt-24">
         <div className="overflow-hidden border-y border-border/50 py-3 md:py-4">
-          <div className="marquee">
-            {techStack.map((tech, i) => (
-              <span key={i} className="text-[10px] md:text-sm text-muted-foreground/50 whitespace-nowrap font-mono uppercase tracking-widest">
+          <div className="flex gap-8 md:gap-12 animate-marquee whitespace-nowrap">
+            {[...techStack, ...techStack].map((tech, i) => (
+              <span key={i} className="text-[10px] md:text-sm text-muted-foreground/50 font-mono uppercase tracking-widest">
                 {tech}
               </span>
             ))}
