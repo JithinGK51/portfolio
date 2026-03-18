@@ -127,7 +127,7 @@ const Hero = () => {
               </motion.a>
               
               <div className="relative z-20">
-                <button
+                <motion.button
                   type="button"
                   onClick={(e) => {
                     e.preventDefault();
@@ -135,10 +135,12 @@ const Hero = () => {
                     setShowResumeOptions(!showResumeOptions);
                   }}
                   className="px-4 md:px-6 py-2.5 md:py-3 rounded-xl border border-border text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all flex items-center gap-2 bg-transparent cursor-pointer relative z-30 pointer-events-auto"
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   <Download size={14} />
                   Resume
-                </button>
+                </motion.button>
 
                 {showResumeOptions && (
                   <>
