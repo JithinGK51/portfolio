@@ -4,8 +4,8 @@ const roles = [
   "Full Stack Developer",
   "Web & Mobile App Developer",
   "Android Developer",
-  "Co-Founder @ Crafzio",
-  "Member @ Roarstar Technology",
+  "Python Developer",
+  "UI/UX Enthusiast",
 ];
 
 const TypeWriter = () => {

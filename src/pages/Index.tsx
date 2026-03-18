@@ -8,6 +8,7 @@ import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import Services from "@/components/sections/Services";
 import Achievements from "@/components/sections/Achievements";
+import Experience from "@/components/sections/Experience";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 import { Menu, X } from "lucide-react";
@@ -15,7 +16,7 @@ import { Menu, X } from "lucide-react";
 const GithubShowcase = lazy(() => import("@/components/sections/GithubShowcase"));
 const Certificates = lazy(() => import("@/components/sections/Certificates"));
 
-const navItems = ["About", "Skills", "Projects", "GitHub", "Certificates", "Achievements", "Contact"];
+const navItems = ["About", "Skills", "Experience", "Projects", "GitHub", "Certificates", "Achievements", "Contact"];
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -83,6 +84,7 @@ const Index = () => {
           <Certificates />
         </Suspense>
         <Achievements />
+        <Experience />
         <Services />
         <Contact />
       </div>

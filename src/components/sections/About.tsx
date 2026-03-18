@@ -7,7 +7,7 @@ const About = () => {
   const { user } = useGithubData();
 
   const paragraphs = [
-    user.data?.bio || "💻 Full Stack Developer | 🌐 Web & 📱 Mobile Apps | HTML, CSS, JS, PHP, Python, Android",
+    "💻 Full Stack Developer | 🌐 Web & 📱 Mobile Apps | HTML, CSS, JS, PHP, Python, Android",
     "I'm a passionate developer who loves creating innovative solutions and exploring new technologies.",
     "Currently working on web development and mobile app projects. Learning Advanced JavaScript, Node.js, Android development, and Flutter.",
     "I love creating both websites and mobile applications — always learning, always building.",
