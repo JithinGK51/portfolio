@@ -105,7 +105,7 @@ const Hero = () => {
             </p>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.5}>
+          <ScrollReveal delay={0.5} className="relative z-50 pointer-events-auto">
             <div className="flex gap-3 md:gap-4 justify-center lg:justify-start flex-wrap relative">
               <motion.a
                 href="#projects"
@@ -129,12 +129,14 @@ const Hero = () => {
               <div className="relative z-20">
                 <motion.button
                   type="button"
+                  id="resume-button"
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
+                    console.log("Resume button clicked, current state:", showResumeOptions);
                     setShowResumeOptions(!showResumeOptions);
                   }}
-                  className="px-4 md:px-6 py-2.5 md:py-3 rounded-xl border border-border text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all flex items-center gap-2 bg-transparent cursor-pointer relative z-30 pointer-events-auto"
+                  className="px-4 md:px-6 py-2.5 md:py-3 rounded-xl border border-border text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all flex items-center gap-2 bg-transparent cursor-pointer relative z-[60] pointer-events-auto"
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
