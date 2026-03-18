@@ -5,14 +5,6 @@ import ScrollReveal from "@/components/animations/ScrollReveal";
 
 const achievements = [
   {
-    title: "Women Safety Hackathon",
-    subtitle: "First Prize Winner",
-    description: "Developed a real-time women safety web application featuring one-tap emergency alerts and live location tracking.",
-    badge: "1st Prize",
-    icon: Trophy,
-    color: "from-cyan-500 to-blue-600",
-  },
-  {
     title: "ArduinoThon 3.0",
     institution: "SSIT College",
     description: "Won ₹2000 Prize for Rural IoT innovation. Developed an IoT-based solution to address critical challenges in rural farming communities.",
@@ -99,12 +91,6 @@ const Achievements = () => {
                       <h3 className="text-xl md:text-2xl font-bold mb-2 text-foreground group-hover:text-accent transition-colors">
                         {item.title}
                       </h3>
-                      
-                      {item.subtitle && (
-                        <p className="text-accent text-sm md:text-base font-medium mb-2 font-mono">
-                          {item.subtitle}
-                        </p>
-                      )}
                       
                       {item.institution && (
                         <p className="text-muted-foreground text-sm md:text-base font-medium mb-3">
