@@ -127,46 +127,44 @@ const Hero = () => {
               </motion.a>
               
               <div className="relative">
-                <motion.button
+                <button
                   type="button"
-                  onClick={() => setShowResumeOptions(!showResumeOptions)}
-                  className="px-4 md:px-6 py-2.5 md:py-3 rounded-xl border border-border text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-colors flex items-center gap-2 bg-transparent"
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  whileTap={{ scale: 0.98 }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log("Resume button clicked, state before:", showResumeOptions);
+                    setShowResumeOptions(!showResumeOptions);
+                  }}
+                  className="px-4 md:px-6 py-2.5 md:py-3 rounded-xl border border-border text-xs md:text-sm font-medium text-muted-foreground hover:text-foreground hover:border-foreground/20 transition-all flex items-center gap-2 bg-transparent cursor-pointer"
                 >
                   <Download size={14} />
                   Resume
-                </motion.button>
+                </button>
 
-                <AnimatePresence>
-                  {showResumeOptions && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                      className="absolute top-full left-0 mt-3 w-52 glass glow-border rounded-xl overflow-hidden z-[100] shadow-2xl"
+                {showResumeOptions && (
+                  <div
+                    className="absolute top-full left-0 mt-3 w-52 glass glow-border rounded-xl overflow-hidden z-[100] shadow-2xl flex flex-col"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowResumeModal(true);
+                        setShowResumeOptions(false);
+                      }}
+                      className="w-full px-4 py-3 text-left text-xs md:text-sm hover:bg-white/10 transition-colors flex items-center gap-2 text-foreground font-medium bg-transparent"
                     >
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setShowResumeModal(true);
-                          setShowResumeOptions(false);
-                        }}
-                        className="w-full px-4 py-3 text-left text-xs md:text-sm hover:bg-white/10 transition-colors flex items-center gap-2 text-foreground font-medium"
-                      >
-                        <ExternalLink size={14} className="text-accent" /> Open on Site
-                      </button>
-                      <a
-                        href={resumeFile}
-                        download="Jithin_GK_Resume.pdf"
-                        onClick={() => setShowResumeOptions(false)}
-                        className="w-full px-4 py-3 text-left text-xs md:text-sm hover:bg-white/10 transition-colors border-t border-border/30 flex items-center gap-2 text-foreground font-medium"
-                      >
-                        <Download size={14} className="text-accent" /> Download PDF
-                      </a>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                      <ExternalLink size={14} className="text-accent" /> Open on Site
+                    </button>
+                    <a
+                      href={resumeFile}
+                      download="Jithin_GK_Resume.pdf"
+                      onClick={() => setShowResumeOptions(false)}
+                      className="w-full px-4 py-3 text-left text-xs md:text-sm hover:bg-white/10 transition-colors border-t border-border/30 flex items-center gap-2 text-foreground font-medium"
+                    >
+                      <Download size={14} className="text-accent" /> Download PDF
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           </ScrollReveal>
