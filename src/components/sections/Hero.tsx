@@ -144,7 +144,7 @@ const Hero = () => {
                       initial={{ opacity: 0, y: 10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute bottom-full left-0 mb-3 w-52 glass glow-border rounded-xl overflow-hidden z-50 shadow-2xl"
+                      className="absolute bottom-full left-0 mb-3 w-52 glass glow-border rounded-xl overflow-hidden z-[70] shadow-2xl"
                     >
                       <button
                         type="button"
@@ -159,7 +159,6 @@ const Hero = () => {
                       <a
                         href={resumeFile}
                         download="Jithin_GK_Resume.pdf"
-                        onClick={() => setShowResumeOptions(false)}
                         className="w-full px-4 py-3 text-left text-xs md:text-sm hover:bg-white/10 transition-colors border-t border-border/30 flex items-center gap-2 text-foreground"
                       >
                         <Download size={14} className="text-accent" /> Download PDF
