@@ -18,11 +18,6 @@ const socialLinks = [
   { icon: Instagram, href: "https://www.instagram.com/jithin_gk_wb?igsh=MW5iYTdmdDluc2xkQ==", label: "Instagram" },
 ];
 
-const roles = [
-  { icon: Building2, label: "Co-Founder", org: "Crafzio" },
-  { icon: Users, label: "Member", org: "Roarstar Technology" },
-];
-
 const Hero = () => {
   const { user } = useGithubData();
   const [showResumeOptions, setShowResumeOptions] = useState(false);
@@ -60,26 +55,6 @@ const Hero = () => {
                 style={{ borderStyle: "dashed" }}
               />
             </motion.div>
-
-            {/* Roles badges */}
-            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-              {roles.map(({ icon: Icon, label, org }, i) => (
-                <motion.div
-                  key={org}
-                  className="glass glow-border px-3 md:px-4 py-1.5 md:py-2 rounded-full flex items-center gap-2"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.8 + i * 0.15 }}
-                >
-                  <Icon size={12} className="text-muted-foreground" />
-                  <span className="text-[10px] md:text-xs font-mono text-muted-foreground">
-                    {label} @ <span className="text-foreground font-semibold">{org}</span>
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Social links */}
             <div className="flex gap-3">
               {socialLinks.map(({ icon: Icon, href, label }, i) => (
                 <motion.a
@@ -193,44 +168,44 @@ const Hero = () => {
                   )}
                 </AnimatePresence>
               </div>
-
-              {/* Resume Modal */}
-              <AnimatePresence>
-                {showResumeModal && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-background/80 backdrop-blur-sm"
-                  >
-                    <motion.div
-                      initial={{ scale: 0.9, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.9, opacity: 0 }}
-                      className="w-full max-w-5xl h-[85vh] glass glow-border rounded-2xl overflow-hidden flex flex-col relative"
-                    >
-                      <div className="flex justify-between items-center p-4 border-b border-border/30 bg-card/50 ">
-                        <h3 className="text-sm md:text-base font-mono uppercase tracking-widest">Resume Viewer</h3>
-                        <button
-                          onClick={() => setShowResumeModal(false)}
-                          className="p-2 hover:bg-white/10 rounded-full transition-colors"
-                        >
-                          <X size={20} />
-                        </button>
-                      </div>
-                      <iframe
-                        src={`${resumeFile}#toolbar=0`}
-                        className="w-full h-full border-none"
-                        title="Resume"
-                      />
-                    </motion.div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
           </ScrollReveal>
         </div>
       </div>
+      
+      {/* Resume Modal - Moved outside stacking context */}
+      <AnimatePresence>
+        {showResumeModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-background/80 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="w-full max-w-5xl h-[85vh] glass glow-border rounded-2xl overflow-hidden flex flex-col relative"
+            >
+              <div className="flex justify-between items-center p-4 border-b border-border/30 bg-card/50 ">
+                <h3 className="text-sm md:text-base font-mono uppercase tracking-widest">Resume Viewer</h3>
+                <button
+                  onClick={() => setShowResumeModal(false)}
+                  className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+              <iframe
+                src={`${resumeFile}#toolbar=0`}
+                className="w-full h-full border-none"
+                title="Resume"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 3D Element */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] opacity-30 hidden xl:block pointer-events-none">
