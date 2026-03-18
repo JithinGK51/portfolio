@@ -15,7 +15,7 @@ import { Menu, X } from "lucide-react";
 const GithubShowcase = lazy(() => import("@/components/sections/GithubShowcase"));
 const Certificates = lazy(() => import("@/components/sections/Certificates"));
 
-const navItems = ["About", "Skills", "Projects", "GitHub", "Certificates", "Contact"];
+const navItems = ["About", "Skills", "Projects", "GitHub", "Certificates", "Achievements", "Contact"];
 
 const Index = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
