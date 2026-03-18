@@ -141,10 +141,10 @@ const Hero = () => {
                 <AnimatePresence>
                   {showResumeOptions && (
                     <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      className="absolute bottom-full left-0 mb-3 w-52 glass glow-border rounded-xl overflow-hidden z-[70] shadow-2xl"
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      className="absolute top-full left-0 mt-3 w-52 glass glow-border rounded-xl overflow-hidden z-[100] shadow-2xl"
                     >
                       <button
                         type="button"
@@ -152,14 +152,15 @@ const Hero = () => {
                           setShowResumeModal(true);
                           setShowResumeOptions(false);
                         }}
-                        className="w-full px-4 py-3 text-left text-xs md:text-sm hover:bg-white/10 transition-colors flex items-center gap-2 text-foreground"
+                        className="w-full px-4 py-3 text-left text-xs md:text-sm hover:bg-white/10 transition-colors flex items-center gap-2 text-foreground font-medium"
                       >
                         <ExternalLink size={14} className="text-accent" /> Open on Site
                       </button>
                       <a
                         href={resumeFile}
                         download="Jithin_GK_Resume.pdf"
-                        className="w-full px-4 py-3 text-left text-xs md:text-sm hover:bg-white/10 transition-colors border-t border-border/30 flex items-center gap-2 text-foreground"
+                        onClick={() => setShowResumeOptions(false)}
+                        className="w-full px-4 py-3 text-left text-xs md:text-sm hover:bg-white/10 transition-colors border-t border-border/30 flex items-center gap-2 text-foreground font-medium"
                       >
                         <Download size={14} className="text-accent" /> Download PDF
                       </a>
