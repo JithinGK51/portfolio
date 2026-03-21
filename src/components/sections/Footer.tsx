@@ -1,9 +1,10 @@
-import { Github, Instagram, Linkedin, Heart } from "lucide-react";
+import { Github, Instagram, Linkedin, Heart, Play } from "lucide-react";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/JithinGK51", label: "GitHub" },
-  { icon: Instagram, href: "https://www.instagram.com/jithin_gk_wb?igsh=MW5iYTdmdDluc2xkYQ==", label: "Instagram" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/jithin-gk-19671b2a7", label: "LinkedIn" },
+  { icon: Instagram, href: "https://www.instagram.com/jithin_gk_wb?igsh=MW5iYTdmdDluc2xkQ==", label: "Instagram" },
+  { icon: Play, href: "https://play.google.com/store/apps/dev?id=9092775155164182538", label: "Google Play" },
 ];
 
 const Footer = () => {

@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import TypeWriter from "@/components/animations/TypeWriter";
 import Scene3D from "@/components/Scene3D";
-import { ArrowDown, ExternalLink, Mail, Github, Linkedin, Instagram, Building2, Users, Download, X } from "lucide-react";
+import { ArrowDown, ExternalLink, Mail, Github, Linkedin, Instagram, Play, Building2, Users, Download, X } from "lucide-react";
 import { useGithubData } from "@/hooks/useGithubData";
 import resumeFile from "@/assets/JITHIN_GK_resume (2).pdf";
 import { useState } from "react";
@@ -16,6 +16,7 @@ const socialLinks = [
   { icon: Github, href: "https://github.com/JithinGK51", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/jithin-gk-19671b2a7", label: "LinkedIn" },
   { icon: Instagram, href: "https://www.instagram.com/jithin_gk_wb?igsh=MW5iYTdmdDluc2xkQ==", label: "Instagram" },
+  { icon: Play, href: "https://play.google.com/store/apps/dev?id=9092775155164182538", label: "Google Play" },
 ];
 
 const Hero = () => {
@@ -28,34 +29,58 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* Left - Profile */}
         <ScrollReveal className="order-2 lg:order-1">
-          <div className="flex flex-col items-center lg:items-start gap-4 md:gap-6">
+          <div className="flex flex-col items-center lg:items-start gap-4 md:gap-8">
             <motion.div
-              className="relative w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden glow-border"
-              whileHover={{ scale: 1.05, rotate: 2 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              className="relative w-44 h-44 md:w-64 md:h-64 lg:w-72 lg:h-72 flex items-center justify-center p-2"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
             >
-              {user.data?.avatar_url ? (
-                <img
-                  src={user.data.avatar_url}
-                  alt="Jithin GK"
-                  className="w-full h-full object-cover rounded-full"
-                />
-              ) : (
-                <>
-                  <div className="absolute inset-0 bg-gradient-to-br from-foreground/20 to-foreground/5 rounded-full" />
-                  <div className="w-full h-full rounded-full bg-card flex items-center justify-center text-3xl md:text-4xl font-bold text-foreground/50">
-                    JG
-                  </div>
-                </>
-              )}
+              {/* Outer Ring - Accent Color (Clockwise) */}
               <motion.div
-                className="absolute inset-0 rounded-full border-2 border-foreground/10"
+                className="absolute inset-0 rounded-full border-[3px] border-transparent border-t-accent border-r-accent/40"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                style={{ borderStyle: "dashed" }}
               />
+
+              {/* Second Ring - Opposite Theme / Foreground (Counter-clockwise) */}
+              <motion.div
+                className="absolute inset-2 rounded-full border-[3px] border-transparent border-b-foreground/30 border-l-foreground/10"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+              />
+
+              {/* Inner Dashed Ring - Accent (Clockwise) */}
+              <motion.div
+                className="absolute inset-5 rounded-full border-2 border-dashed border-accent/20"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              />
+
+              {/* Pulsing Glow Effect */}
+              <motion.div
+                className="absolute inset-0 rounded-full bg-accent/5"
+                animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.6, 0.3] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+
+              {/* Image Container */}
+              <div className="relative w-full h-full rounded-full overflow-hidden glow-border z-10 p-1 bg-background/20 backdrop-blur-sm">
+                <div className="w-full h-full rounded-full overflow-hidden">
+                  {user.data?.avatar_url ? (
+                    <img
+                      src={user.data.avatar_url}
+                      alt="Jithin GK"
+                      className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-card to-background flex items-center justify-center text-5xl md:text-6xl font-bold text-accent/40">
+                      JG
+                    </div>
+                  )}
+                </div>
+              </div>
             </motion.div>
-            <div className="flex gap-3">
+            <div className="flex gap-4">
               {socialLinks.map(({ icon: Icon, href, label }, i) => (
                 <motion.a
                   key={label}
@@ -125,7 +150,7 @@ const Hero = () => {
                 <Mail size={14} />
                 Contact Me
               </motion.a>
-              
+
               <div className="relative z-20">
                 <motion.button
                   type="button"
@@ -147,8 +172,8 @@ const Hero = () => {
                 {showResumeOptions && (
                   <>
                     {/* Invisible backdrop to close dropdown when clicking outside */}
-                    <div 
-                      className="fixed inset-0 z-[90]" 
+                    <div
+                      className="fixed inset-0 z-[90]"
                       onClick={() => setShowResumeOptions(false)}
                     />
                     <div
@@ -180,7 +205,7 @@ const Hero = () => {
           </ScrollReveal>
         </div>
       </div>
-      
+
       {/* Resume Modal - Moved outside stacking context */}
       <AnimatePresence>
         {showResumeModal && (
